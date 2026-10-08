@@ -25,7 +25,7 @@ const SimControl = ({ label, current, min, max, unit, step = 1, value, onChange 
         onChange={(e) => onChange(Number(e.target.value))}
         className="w-full accent-brand-accent h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer"
       />
-      <div className="flex justify-between text-[10px] font-medium text-slate-400 mt-2 px-1">
+      <div className="flex justify-between text-[9.5px] font-medium text-slate-400 mt-2 px-1">
         <span>{min}</span>
         <span>{max}</span>
       </div>
@@ -315,7 +315,7 @@ const WhatIfSimulation: React.FC = () => {
               
               {/* Dynamic Risk Messages */}
               <div className="bg-black/30 border border-brand-border/50 rounded-lg p-3">
-                <span className="text-[9.5px] text-slate-400 uppercase tracking-widest font-bold mb-2 block">Safety & Risk Assessment</span>
+                <span className="text-[9px] text-slate-400 uppercase tracking-widest font-bold mb-2 block">Safety & Risk Assessment</span>
                 <ul className="space-y-1.5">
                   {riskMessages.map((msg, i) => (
                     <li key={i} className="flex items-start gap-2 text-xs font-medium text-slate-300">

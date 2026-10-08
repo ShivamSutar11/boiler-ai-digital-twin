@@ -32,7 +32,7 @@ const Layout: React.FC = () => {
               </div>
               <span className="leading-tight">
                 Boiler AI
-                <span className="block text-[9.5px] text-slate-300 font-normal uppercase tracking-widest mt-0.5">Platform</span>
+                <span className="block text-[9px] text-slate-300 font-normal uppercase tracking-widest mt-0.5">Platform</span>
               </span>
             </h1>
           </div>
@@ -45,7 +45,7 @@ const Layout: React.FC = () => {
                     to={item.path}
                     className={({ isActive }) => {
                       const active = isActive || (item.name === 'Overview' && window.location.pathname === '/dashboard');
-                      return `flex items-center gap-3 px-4 py-3 rounded-xl text-[13px] transition-all duration-300 relative overflow-hidden group ${
+                      return `flex items-center gap-3 px-4 py-3 rounded-xl text-[12px] transition-all duration-300 relative overflow-hidden group ${
                         active
                           ? 'bg-cyan-950/40 text-cyan-400 font-bold shadow-[inset_4px_0_0_0_#06b6d4] border border-cyan-900/30'
                           : 'text-slate-300 font-medium hover:text-white hover:bg-white/5 border border-transparent'
@@ -97,7 +97,7 @@ const Layout: React.FC = () => {
               <div className="flex items-center gap-3 border-l border-brand-border/50 pl-6">
                 <div className="text-right hidden sm:block">
                   <p className="text-xs text-white font-medium">S. Engineer</p>
-                  <p className="text-[9.5px] text-slate-300">Operations</p>
+                  <p className="text-[9px] text-slate-300">Operations</p>
                 </div>
                 <div className="w-8 h-8 rounded-full bg-brand-primary/20 border border-brand-primary/30 flex items-center justify-center text-brand-accent">
                   <User size={14} />
