@@ -15,10 +15,10 @@ function App() {
       <Route path="/dashboard" element={<Layout />}>
         <Route index element={<Overview />} />
         <Route path="anomaly-detection" element={<AnomalyDetection />} />
-        <Route path="root-cause-analysis" element={<RootCauseAnalysis />} />
-        <Route path="prescriptive-maintenance" element={<PrescriptiveMaintenance />} />
+        <Route path="root-cause" element={<RootCauseAnalysis />} />
+        <Route path="maintenance" element={<PrescriptiveMaintenance />} />
         <Route path="digital-twin" element={<DigitalTwin />} />
-        <Route path="what-if-simulation" element={<WhatIfSimulation />} />
+        <Route path="simulation" element={<WhatIfSimulation />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

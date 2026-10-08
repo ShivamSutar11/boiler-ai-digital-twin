@@ -4,12 +4,12 @@ import { LayoutDashboard, Activity, Search, Settings, Cpu, AlertTriangle, Bell, 
 
 const Layout: React.FC = () => {
   const navItems = [
-    { name: 'Overview', path: '/', icon: <LayoutDashboard size={18} /> },
-    { name: 'AI Anomaly Detection', path: '/anomaly-detection', icon: <Activity size={18} /> },
-    { name: 'Root Cause Analysis', path: '/root-cause-analysis', icon: <Search size={18} /> },
-    { name: 'Prescriptive Maintenance', path: '/prescriptive-maintenance', icon: <Settings size={18} /> },
-    { name: 'Utility Digital Twin', path: '/digital-twin', icon: <Cpu size={18} /> },
-    { name: 'What-If Simulation', path: '/what-if-simulation', icon: <AlertTriangle size={18} /> },
+    { name: 'Overview', path: '/dashboard', icon: <LayoutDashboard size={18} /> },
+    { name: 'AI Anomaly Detection', path: '/dashboard/anomaly-detection', icon: <Activity size={18} /> },
+    { name: 'Root Cause Analysis', path: '/dashboard/root-cause', icon: <Search size={18} /> },
+    { name: 'Prescriptive Maintenance', path: '/dashboard/maintenance', icon: <Settings size={18} /> },
+    { name: 'Utility Digital Twin', path: '/dashboard/digital-twin', icon: <Cpu size={18} /> },
+    { name: 'What-If Simulation', path: '/dashboard/simulation', icon: <AlertTriangle size={18} /> },
   ];
 
   return (
@@ -45,7 +45,7 @@ const Layout: React.FC = () => {
                     to={item.path}
                     className={({ isActive }) =>
                       `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-200 ${
-                        isActive || (item.name === 'Overview' && window.location.pathname === '/')
+                        isActive || (item.name === 'Overview' && window.location.pathname === '/dashboard')
                           ? 'bg-brand-primary/10 text-brand-accent font-medium shadow-[inset_2px_0_0_0_#06b6d4]'
                           : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
                       }`
