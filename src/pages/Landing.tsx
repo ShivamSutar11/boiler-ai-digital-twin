@@ -153,7 +153,7 @@ const Landing: React.FC = () => {
                 <div className="w-8 h-8 rounded-full border-[3px] border-[#34D399] border-t-transparent animate-spin"></div>
                 <div>
                   <span className="block text-xl font-mono text-[#34D399] font-bold leading-none">92%</span>
-                  <span className="text-[10px] text-[#94A3B8] uppercase tracking-wider">Health Score</span>
+                  <span className="text-[9.5px] text-[#94A3B8] uppercase tracking-wider">Health Score</span>
                 </div>
               </motion.div>
 
@@ -282,7 +282,7 @@ const Landing: React.FC = () => {
                   <div className="w-3 h-3 rounded-full bg-[#334155]"></div>
                   <div className="w-3 h-3 rounded-full bg-[#334155]"></div>
                 </div>
-                <div className="mx-auto bg-[#050B16] text-[#94A3B8] text-[10px] font-mono px-6 py-1 rounded border border-[#1E293B]">
+                <div className="mx-auto bg-[#050B16] text-[#94A3B8] text-[9.5px] font-mono px-6 py-1 rounded border border-[#1E293B]">
                   boiler-ai.local / digital-twin
                 </div>
               </div>
@@ -361,27 +361,27 @@ const Landing: React.FC = () => {
 
               <div className="space-y-6">
                 <div>
-                  <span className="text-[10px] text-[#94A3B8] uppercase tracking-widest block mb-1">AI Detected</span>
+                  <span className="text-[9.5px] text-[#94A3B8] uppercase tracking-widest block mb-1">AI Detected</span>
                   <p className="text-[#F8FAFC] font-medium">Feedwater temperature deviation</p>
                 </div>
                 <div className="pl-4 border-l-2 border-[#1E293B] space-y-4">
                   <div>
-                    <span className="text-[10px] text-[#94A3B8] uppercase tracking-widest block mb-1">Probable Cause</span>
+                    <span className="text-[9.5px] text-[#94A3B8] uppercase tracking-widest block mb-1">Probable Cause</span>
                     <p className="text-[#F8FAFC]">Economizer fouling</p>
                   </div>
                   <div className="flex gap-8">
                     <div>
-                      <span className="text-[10px] text-[#94A3B8] uppercase tracking-widest block mb-1">Confidence</span>
+                      <span className="text-[9.5px] text-[#94A3B8] uppercase tracking-widest block mb-1">Confidence</span>
                       <p className="text-[#22D3EE] font-mono font-medium">87%</p>
                     </div>
                     <div>
-                      <span className="text-[10px] text-[#94A3B8] uppercase tracking-widest block mb-1">Impact</span>
+                      <span className="text-[9.5px] text-[#94A3B8] uppercase tracking-widest block mb-1">Impact</span>
                       <p className="text-[#F87171] font-mono font-medium">Boiler Efficiency -3.8%</p>
                     </div>
                   </div>
                 </div>
                 <div className="bg-[#1E293B]/50 rounded-lg p-4 border border-[#334155]/50 mt-4">
-                  <span className="text-[10px] text-[#2563EB] uppercase tracking-widest block mb-2 font-bold">Recommended Action</span>
+                  <span className="text-[9.5px] text-[#2563EB] uppercase tracking-widest block mb-2 font-bold">Recommended Action</span>
                   <p className="text-sm text-[#F8FAFC]">Inspect economizer during next planned maintenance window.</p>
                 </div>
               </div>

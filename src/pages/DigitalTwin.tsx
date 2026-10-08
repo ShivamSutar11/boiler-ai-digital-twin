@@ -96,7 +96,7 @@ const DigitalTwin: React.FC = () => {
             >
               <span className="block text-sm font-medium text-white mb-1.5">{nodeData[id].name}</span>
               <span className="block text-base font-mono text-brand-primary font-bold">{nodeData[id].temp}</span>
-              {nodeData[id].pressure !== 'N/A' && <span className="block text-[11px] text-slate-400 mt-1">{nodeData[id].pressure}</span>}
+              {nodeData[id].pressure !== 'N/A' && <span className="block text-[10px] text-slate-400 mt-1">{nodeData[id].pressure}</span>}
             </motion.div>
           )}
         </AnimatePresence>
@@ -126,7 +126,7 @@ const DigitalTwin: React.FC = () => {
           <div className="bg-brand-panel border border-brand-border rounded-lg p-1 flex items-center gap-1">
             <FastForward size={16} className="text-slate-500 ml-2" />
             {[0.5, 1, 2].map(s => (
-              <button key={s} onClick={() => setSpeed(s)} className={`px-3 py-1.5 text-[11px] font-bold rounded transition-colors ${speed === s ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-slate-300'}`}>
+              <button key={s} onClick={() => setSpeed(s)} className={`px-3 py-1.5 text-[10px] font-bold rounded transition-colors ${speed === s ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-slate-300'}`}>
                 {s}x
               </button>
             ))}
@@ -175,7 +175,7 @@ const DigitalTwin: React.FC = () => {
                 <div className="w-20 h-24 bg-[#152136] border-2 border-slate-600 rounded-lg flex flex-col items-center justify-center shadow-2xl pointer-events-auto">
                   <div className="absolute bottom-0 w-full h-[70%] bg-cyan-900/40 rounded-b-lg"></div>
                   <Droplet className="text-cyan-400 mb-2 z-10" size={24} />
-                  <span className="text-[11px] text-slate-300 font-bold z-10">FW TANK</span>
+                  <span className="text-[10px] text-slate-300 font-bold z-10">FW TANK</span>
                 </div>
               </EquipNode>
 
@@ -188,7 +188,7 @@ const DigitalTwin: React.FC = () => {
               <EquipNode id="fdfan" x="46.3%" y="66.6%">
                 <div className="w-16 h-16 bg-[#152136] border-2 border-slate-600 rounded-full flex flex-col items-center justify-center shadow-xl pointer-events-auto">
                   <Wind className={`text-slate-400 ${!isPaused ? 'animate-spin' : ''}`} size={24} style={{ animationDuration: getSpeedDur(2) }} />
-                  <span className="text-[10px] text-slate-300 font-bold mt-1">FD FAN</span>
+                  <span className="text-[9.5px] text-slate-300 font-bold mt-1">FD FAN</span>
                 </div>
               </EquipNode>
 
@@ -196,7 +196,7 @@ const DigitalTwin: React.FC = () => {
                 <div className={`w-28 h-20 bg-[#152136] border-2 ${selectedNode === 'economizer' ? 'border-amber-500' : 'border-slate-600'} rounded-lg flex flex-col items-center justify-center shadow-xl pointer-events-auto relative`}>
                   <div className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-amber-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(245,158,11,0.8)]"></div>
                   <Activity className="text-amber-400 mb-1" size={22} />
-                  <span className="text-[11px] text-slate-300 font-bold">ECONOMIZER</span>
+                  <span className="text-[10px] text-slate-300 font-bold">ECONOMIZER</span>
                 </div>
               </EquipNode>
 
@@ -220,7 +220,7 @@ const DigitalTwin: React.FC = () => {
                 <div className="w-20 h-32 bg-gradient-to-t from-[#152136] to-transparent border-x-2 border-t-2 border-slate-700 flex flex-col items-center justify-start pt-3 pointer-events-auto relative overflow-hidden">
                   {!isPaused && <motion.div animate={{ y: [0, -30] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMTBRNSAwIDEwIDEwVDEwIDMwIiBzdHJva2U9IiM2NDc0OGIiIGZpbGw9Im5vbmUiIG9wYWNpdHk9IjAuMyIvPjwvc3ZnPg==')] opacity-60"></motion.div>}
                   <Wind className="text-slate-400 mb-2 z-10" size={20} />
-                  <span className="text-[11px] text-slate-300 font-bold z-10">STACK</span>
+                  <span className="text-[10px] text-slate-300 font-bold z-10">STACK</span>
                 </div>
               </EquipNode>
 
@@ -255,7 +255,7 @@ const DigitalTwin: React.FC = () => {
                 {selectedNode ? (
                   <>
                     <div className="flex justify-between items-center bg-black/20 p-4 rounded-lg border border-brand-border/50">
-                      <span className="text-[15px] font-semibold text-slate-300">Health Score</span>
+                      <span className="text-[14px] font-semibold text-slate-300">Health Score</span>
                       <span className={`text-2xl font-bold ${selectedData.health < '80%' ? 'text-amber-400' : 'text-green-400'}`}>{selectedData.health}</span>
                     </div>
 
@@ -288,7 +288,7 @@ const DigitalTwin: React.FC = () => {
                 ) : (
                   <>
                     <div className="flex items-center justify-between">
-                      <span className="text-slate-300 font-semibold text-[15px]">Overall Health</span>
+                      <span className="text-slate-300 font-semibold text-[14px]">Overall Health</span>
                       <div className="flex items-center gap-2">
                         <span className="text-green-400 font-bold text-2xl">92%</span>
                         <Activity className="text-green-400" size={20} />
@@ -296,7 +296,7 @@ const DigitalTwin: React.FC = () => {
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-slate-300 font-semibold text-[15px]">Current Load</span>
+                      <span className="text-slate-300 font-semibold text-[14px]">Current Load</span>
                       <div className="flex items-center gap-2">
                         <span className="text-slate-50 font-bold text-2xl">82</span>
                         <span className="text-sm font-medium text-slate-400">% MCR</span>
@@ -306,20 +306,20 @@ const DigitalTwin: React.FC = () => {
                     <div className="w-full h-px bg-slate-700 my-4"></div>
 
                     <div>
-                      <span className="text-slate-300 font-semibold text-[15px] block mb-2">AI Control Status</span>
+                      <span className="text-slate-300 font-semibold text-[14px] block mb-2">AI Control Status</span>
                       <div className="bg-cyan-900/20 border border-cyan-800/50 rounded-lg p-4 flex items-center gap-3 shadow-inner">
                         <div className="relative flex h-3 w-3">
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                           <span className="relative inline-flex rounded-full h-3 w-3 bg-cyan-500"></span>
                         </div>
-                        <span className="text-cyan-400 font-bold text-[15px]">Monitoring Active</span>
+                        <span className="text-cyan-400 font-bold text-[14px]">Monitoring Active</span>
                       </div>
                     </div>
 
                     <div>
-                      <span className="text-slate-300 font-semibold text-[15px] block mb-2">Boiler Mode</span>
+                      <span className="text-slate-300 font-semibold text-[14px] block mb-2">Boiler Mode</span>
                       <div className="bg-black/20 border border-brand-border/50 rounded-lg p-4 flex items-center justify-between shadow-inner">
-                        <span className="text-slate-50 font-bold text-[15px]">Automatic Optimization</span>
+                        <span className="text-slate-50 font-bold text-[14px]">Automatic Optimization</span>
                         <Power className="text-green-500" size={18} />
                       </div>
                     </div>

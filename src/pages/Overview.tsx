@@ -22,7 +22,7 @@ const KPICard = ({ title, value, unit, delta, icon: Icon, color = "text-brand-ac
       <span className="text-3xl font-bold text-slate-50 tracking-tight">{value}</span>
       <span className="text-sm text-slate-400 font-medium">{unit}</span>
     </div>
-    <div className="mt-2 text-[12px] text-brand-success flex items-center gap-1 font-medium">
+    <div className="mt-2 text-[11px] text-brand-success flex items-center gap-1 font-medium">
       <TrendingUpIcon size={14} />
       <span>{delta}</span>
     </div>
@@ -58,7 +58,7 @@ const Overview: React.FC = () => {
             <h3 className="text-slate-50 font-semibold tracking-wide">Boiler System – Live Digital Twin</h3>
             <div className="flex items-center gap-2 bg-brand-success/10 border border-brand-success/20 px-2.5 py-1 rounded-full">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-success animate-pulse"></span>
-              <span className="text-[10px] text-brand-success uppercase font-bold tracking-wider">Live Data</span>
+              <span className="text-[9.5px] text-brand-success uppercase font-bold tracking-wider">Live Data</span>
             </div>
           </div>
 
@@ -72,7 +72,7 @@ const Overview: React.FC = () => {
               
               {/* FW Tank */}
               <div className="absolute top-[50%] left-[5%] transform -translate-y-1/2 w-16 h-20 bg-[#152136] border border-brand-border rounded-md flex flex-col items-center justify-center shadow-lg">
-                <span className="text-[10px] text-slate-300 font-semibold uppercase tracking-wider mb-1">FW Tank</span>
+                <span className="text-[9.5px] text-slate-300 font-semibold uppercase tracking-wider mb-1">FW Tank</span>
                 <span className="text-xs text-brand-accent font-bold font-mono">105°C</span>
               </div>
 
@@ -84,30 +84,30 @@ const Overview: React.FC = () => {
               {/* Boiler B-101 */}
               <div className="absolute top-[35%] left-[45%] transform -translate-y-1/2 w-28 h-32 bg-gradient-to-b from-[#152136] to-[#0f172a] border border-brand-border rounded-lg flex flex-col items-center justify-center shadow-2xl relative overflow-hidden">
                 <div className="absolute bottom-0 w-full h-[40%] bg-orange-500/5 border-t border-orange-500/10"></div>
-                <span className="text-[11px] text-slate-50 font-bold uppercase tracking-wider mb-2 relative z-10">Boiler B-101</span>
+                <span className="text-[10px] text-slate-50 font-bold uppercase tracking-wider mb-2 relative z-10">Boiler B-101</span>
                 <div className="bg-black/30 px-2 py-1 rounded text-xs text-orange-200 font-mono font-bold relative z-10 border border-white/5">890°C</div>
               </div>
 
               {/* Steam Header */}
               <div className="absolute top-[20%] left-[70%] transform -translate-y-1/2 w-20 h-10 bg-[#152136] border border-cyan-800/50 rounded-full flex flex-col items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.1)]">
-                <span className="text-[9px] text-cyan-200 font-semibold uppercase tracking-wider">Header</span>
-                <span className="text-[11px] text-cyan-400 font-bold font-mono">42 bar</span>
+                <span className="text-[8.5px] text-cyan-200 font-semibold uppercase tracking-wider">Header</span>
+                <span className="text-[10px] text-cyan-400 font-bold font-mono">42 bar</span>
               </div>
 
               {/* End Process */}
               <div className="absolute top-[20%] right-[0%] transform -translate-y-1/2 flex flex-col gap-2">
-                <div className="text-[11px] text-slate-300 font-semibold bg-[#152136] px-2 py-1 rounded border border-brand-border">Reactor Unit</div>
+                <div className="text-[10px] text-slate-300 font-semibold bg-[#152136] px-2 py-1 rounded border border-brand-border">Reactor Unit</div>
               </div>
 
               {/* Economizer */}
               <div className="absolute top-[75%] left-[60%] transform -translate-y-1/2 w-20 h-16 bg-[#152136] border border-brand-border rounded-md flex flex-col items-center justify-center shadow-lg">
-                <span className="text-[10px] text-slate-300 font-semibold uppercase tracking-wider mb-1">Economizer</span>
-                <span className="text-[11px] text-amber-400 font-bold font-mono">310°C</span>
+                <span className="text-[9.5px] text-slate-300 font-semibold uppercase tracking-wider mb-1">Economizer</span>
+                <span className="text-[10px] text-amber-400 font-bold font-mono">310°C</span>
               </div>
 
               {/* Stack */}
               <div className="absolute top-[75%] right-[10%] transform -translate-y-1/2 w-10 h-24 bg-gradient-to-t from-[#152136] to-transparent border-x border-t border-brand-border rounded-t flex flex-col items-center justify-end pb-2">
-                <span className="text-[9px] text-slate-400 font-semibold uppercase tracking-wider">Stack</span>
+                <span className="text-[8.5px] text-slate-400 font-semibold uppercase tracking-wider">Stack</span>
               </div>
 
 
