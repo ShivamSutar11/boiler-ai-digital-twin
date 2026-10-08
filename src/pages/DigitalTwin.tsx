@@ -31,35 +31,40 @@ const DigitalTwin: React.FC = () => {
 
   const selectedData = selectedNode ? nodeData[selectedNode] : null;
 
+  const twinRef = React.useRef<HTMLDivElement>(null);
+  
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      twinRef.current?.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  };
+
   // Pipeline Paths for SVG
-  // Grid layout roughly: Tank(10%, 85%), Pump(30%, 85%), Econ(50%, 65%), Furnace(65%, 45%), Drum(65%, 20%), FD Fan(45%, 85%), Stack(45%, 10%)
   const paths = {
-    water1: "M 100 350 L 250 350", // Tank to Pump
-    water2: "M 310 350 L 450 350 L 450 260 L 500 260", // Pump to Econ
-    water3: "M 580 260 L 650 260 L 650 120", // Econ to Drum
-    water4: "M 670 120 L 670 200", // Drum to Furnace (Downcomer)
-    steam1: "M 710 200 L 710 120", // Furnace to Drum (Riser)
-    steam2: "M 750 100 L 900 100", // Drum to Output
-    air1: "M 350 400 L 450 400 L 450 350", // Intake to FD Fan
-    air2: "M 510 350 L 600 350 L 600 280", // FD Fan to Furnace
-    fuel1: "M 900 300 L 750 300 L 750 250", // Fuel to Furnace
-    flue1: "M 650 220 L 580 220 L 580 250", // Furnace to Econ
-    flue2: "M 500 220 L 450 220 L 450 120", // Econ to Stack
+    water1: "M 10 320 L 150 320", 
+    water2: "M 230 320 L 400 320 L 400 230 L 470 230", 
+    water3: "M 550 230 L 620 230 L 620 90", 
+    water4: "M 650 90 L 650 170", 
+    steam1: "M 690 170 L 690 90", 
+    steam2: "M 740 70 L 930 70", 
+    air1: "M 320 400 L 400 400 L 400 320", 
+    air2: "M 480 320 L 580 320 L 580 250", 
+    fuel1: "M 930 270 L 730 270 L 730 220", 
+    flue1: "M 620 190 L 550 190 L 550 220", 
+    flue2: "M 470 190 L 400 190 L 400 90", 
   };
 
   const FlowPath = ({ d, color, type, baseSpeed, relatedNodes }: any) => {
     if (!isVisible(type)) return null;
-    
-    // Check if we should highlight this path based on selection/hover
-    const isHighlighted = (selectedNode && relatedNodes.includes(selectedNode)) || 
-                          (hoveredNode && relatedNodes.includes(hoveredNode));
-    const opacity = (selectedNode || hoveredNode) ? (isHighlighted ? 1 : 0.2) : 0.6;
-    
+    const isHighlighted = (selectedNode && relatedNodes.includes(selectedNode)) || (hoveredNode && relatedNodes.includes(hoveredNode));
+    const opacity = (selectedNode || hoveredNode) ? (isHighlighted ? 1 : 0.15) : 0.6;
     return (
       <g style={{ opacity, transition: 'opacity 0.3s ease' }}>
-        <path d={d} stroke={color} strokeWidth="6" fill="none" opacity="0.2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d={d} stroke={color} strokeWidth="8" fill="none" opacity="0.2" strokeLinecap="round" strokeLinejoin="round" />
         {!isPaused && (
-          <path d={d} stroke={color} strokeWidth="3" fill="none" strokeDasharray="4 12" strokeLinecap="round" strokeLinejoin="round">
+          <path d={d} stroke={color} strokeWidth="4" fill="none" strokeDasharray="6 14" strokeLinecap="round" strokeLinejoin="round">
             <animate attributeName="stroke-dashoffset" values="100;0" dur={getSpeedDur(baseSpeed)} repeatCount="indefinite" />
           </path>
         )}
@@ -80,21 +85,18 @@ const DigitalTwin: React.FC = () => {
         onMouseLeave={() => setHoveredNode(null)}
         onClick={() => handleNodeClick(id)}
         whileHover={{ scale: 1.05 }}
-        animate={{ filter: isSelected ? 'drop-shadow(0 0 15px rgba(37,99,235,0.6))' : 'drop-shadow(0 0 0px rgba(0,0,0,0))' }}
+        animate={{ filter: isSelected ? 'drop-shadow(0 0 20px rgba(37,99,235,0.8))' : 'drop-shadow(0 0 0px rgba(0,0,0,0))' }}
       >
         {children}
-        
         <AnimatePresence>
           {isHovered && !isSelected && (
             <motion.div 
-              initial={{ opacity: 0, y: 10 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              exit={{ opacity: 0, y: 10 }}
-              className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-brand-surface border border-brand-border px-3 py-2 rounded-lg shadow-xl min-w-[120px] text-center pointer-events-none"
+              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
+              className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 bg-brand-surface border border-brand-border px-4 py-3 rounded-xl shadow-2xl min-w-[140px] text-center pointer-events-none z-50"
             >
-              <span className="block text-xs font-medium text-white mb-1">{nodeData[id].name}</span>
-              <span className="block text-sm font-mono text-brand-primary">{nodeData[id].temp}</span>
-              {nodeData[id].pressure !== 'N/A' && <span className="block text-[10px] text-slate-400 mt-1">{nodeData[id].pressure}</span>}
+              <span className="block text-sm font-medium text-white mb-1.5">{nodeData[id].name}</span>
+              <span className="block text-base font-mono text-brand-primary font-bold">{nodeData[id].temp}</span>
+              {nodeData[id].pressure !== 'N/A' && <span className="block text-[11px] text-slate-400 mt-1">{nodeData[id].pressure}</span>}
             </motion.div>
           )}
         </AnimatePresence>
@@ -103,7 +105,7 @@ const DigitalTwin: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-full animate-fade-in">
+    <div className="flex flex-col h-full animate-fade-in pb-4">
       
       {/* Header & Controls */}
       <div className="flex justify-between items-end mb-6">
@@ -112,148 +114,120 @@ const DigitalTwin: React.FC = () => {
           <p className="text-slate-400 text-sm">Live thermodynamic state mapping and process visualization</p>
         </div>
         
-        <div className="flex items-center gap-6">
-          
-          {/* Flow Mode Toggle */}
+        <div className="flex items-center gap-4 lg:gap-6 flex-wrap justify-end">
           <div className="bg-brand-panel border border-brand-border rounded-lg p-1 flex">
             {flowTypes.map(type => (
-              <button 
-                key={type}
-                onClick={() => setFlowMode(type)}
-                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${flowMode === type ? 'bg-brand-primary text-white shadow' : 'text-slate-400 hover:text-slate-200'}`}
-              >
+              <button key={type} onClick={() => setFlowMode(type)} className={`px-4 py-2 text-xs font-medium rounded-md transition-colors ${flowMode === type ? 'bg-brand-primary text-white shadow' : 'text-slate-400 hover:text-slate-200'}`}>
                 {type}
               </button>
             ))}
           </div>
 
-          {/* Speed Toggle */}
           <div className="bg-brand-panel border border-brand-border rounded-lg p-1 flex items-center gap-1">
-            <FastForward size={14} className="text-slate-500 ml-2" />
+            <FastForward size={16} className="text-slate-500 ml-2" />
             {[0.5, 1, 2].map(s => (
-              <button 
-                key={s}
-                onClick={() => setSpeed(s)}
-                className={`px-2 py-1 text-[10px] font-bold rounded transition-colors ${speed === s ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-slate-300'}`}
-              >
+              <button key={s} onClick={() => setSpeed(s)} className={`px-3 py-1.5 text-[11px] font-bold rounded transition-colors ${speed === s ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-slate-300'}`}>
                 {s}x
               </button>
             ))}
           </div>
 
-          {/* Play/Pause */}
-          <button 
-            onClick={() => setIsPaused(!isPaused)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${isPaused ? 'bg-brand-warning/20 border-brand-warning/50 text-brand-warning' : 'bg-brand-success/20 border-brand-success/50 text-brand-success'}`}
-          >
-            {isPaused ? <Play size={16} /> : <Pause size={16} />}
+          <button onClick={() => setIsPaused(!isPaused)} className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium border transition-colors ${isPaused ? 'bg-brand-warning/20 border-brand-warning/50 text-brand-warning' : 'bg-brand-success/20 border-brand-success/50 text-brand-success'}`}>
+            {isPaused ? <Play size={18} /> : <Pause size={18} />}
             {isPaused ? 'Paused' : 'Live Flow'}
           </button>
 
-          <button className="flex items-center gap-2 text-sm bg-brand-panel border border-brand-border px-4 py-2 rounded-lg hover:bg-slate-800 transition-colors text-slate-300">
-            <Maximize2 size={16} /> Fullscreen
+          <button onClick={toggleFullscreen} className="flex items-center gap-2 text-sm bg-brand-panel border border-brand-border px-5 py-2.5 rounded-lg hover:bg-slate-800 transition-colors text-slate-300">
+            <Maximize2 size={18} /> Fullscreen
           </button>
         </div>
       </div>
 
-      <div className="flex-1 flex gap-6 min-h-[600px]">
+      <div className="flex-1 flex flex-col lg:flex-row gap-6 min-h-[650px]">
         
         {/* Main Digital Twin Area */}
-        <div className="flex-1 bg-[#0b1221] border border-brand-border rounded-xl relative overflow-hidden flex items-center justify-center">
+        <div ref={twinRef} className="flex-1 bg-[#0b1221] border border-brand-border rounded-xl relative overflow-hidden flex items-center justify-center p-4">
           
-          {/* Ambient Grid */}
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IiMzMzQxNTUiLz48L3N2Zz4=')] opacity-20"></div>
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IiMzMzQxNTUiLz48L3N2Zz4=')] opacity-20"></div>
 
-          {/* Heat Glow for Furnace */}
-          {!isPaused && <div className="absolute top-[45%] left-[68%] w-48 h-48 bg-orange-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '3s' }}></div>}
+          {!isPaused && <div className="absolute top-[45%] left-[68%] w-64 h-64 bg-orange-500/10 rounded-full blur-[60px] animate-pulse" style={{ animationDuration: '3s' }}></div>}
 
-          {/* The SVG Pipeline Layer */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet">
+          {/* Scaled viewBox to crop empty space and make contents larger */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 950 480" preserveAspectRatio="xMidYMid meet">
             <FlowPath type="Water" color="#06b6d4" baseSpeed={3} d={paths.water1} relatedNodes={['fwtank', 'fwpump']} />
             <FlowPath type="Water" color="#06b6d4" baseSpeed={4} d={paths.water2} relatedNodes={['fwpump', 'economizer']} />
             <FlowPath type="Water" color="#06b6d4" baseSpeed={3} d={paths.water3} relatedNodes={['economizer', 'drum']} />
             <FlowPath type="Water" color="#06b6d4" baseSpeed={2} d={paths.water4} relatedNodes={['drum', 'furnace']} />
-            
             <FlowPath type="Steam" color="#e0f2fe" baseSpeed={2} d={paths.steam1} relatedNodes={['furnace', 'drum']} />
             <FlowPath type="Steam" color="#e0f2fe" baseSpeed={3} d={paths.steam2} relatedNodes={['drum']} />
-            
             <FlowPath type="Air" color="#94a3b8" baseSpeed={2} d={paths.air1} relatedNodes={['fdfan']} />
             <FlowPath type="Air" color="#94a3b8" baseSpeed={3} d={paths.air2} relatedNodes={['fdfan', 'furnace']} />
-            
             <FlowPath type="Fuel" color="#f59e0b" baseSpeed={4} d={paths.fuel1} relatedNodes={['furnace']} />
-            
             <FlowPath type="Flue Gas" color="#f97316" baseSpeed={2} d={paths.flue1} relatedNodes={['furnace', 'economizer']} />
             <FlowPath type="Flue Gas" color="#f97316" baseSpeed={3} d={paths.flue2} relatedNodes={['economizer', 'stack']} />
           </svg>
 
-          {/* HTML Overlay for Nodes to maintain exact positioning matching the SVG viewBox */}
-          <div className="absolute inset-0 w-full h-full pointer-events-none" style={{ maxWidth: '1000px', maxHeight: '600px', margin: 'auto' }}>
-            
-            {/* Feedwater Tank */}
-            <EquipNode id="fwtank" x="10%" y="58%">
-              <div className="w-16 h-20 bg-[#152136] border-2 border-slate-600 rounded-lg flex flex-col items-center justify-center shadow-lg relative pointer-events-auto">
-                <div className="absolute bottom-0 w-full h-[70%] bg-cyan-900/40 rounded-b-lg"></div>
-                <Droplet className="text-cyan-400 mb-1 z-10" size={18} />
-                <span className="text-[10px] text-slate-300 font-bold z-10">FW TANK</span>
-              </div>
-            </EquipNode>
+          {/* Matched overlay wrapper */}
+          <div className="absolute inset-0 w-full h-full pointer-events-none flex items-center justify-center">
+            <div className="relative w-full h-full max-w-full max-h-full pointer-events-none" style={{ aspectRatio: '950/480' }}>
+              
+              <EquipNode id="fwtank" x="2.5%" y="66.6%">
+                <div className="w-20 h-24 bg-[#152136] border-2 border-slate-600 rounded-lg flex flex-col items-center justify-center shadow-2xl pointer-events-auto">
+                  <div className="absolute bottom-0 w-full h-[70%] bg-cyan-900/40 rounded-b-lg"></div>
+                  <Droplet className="text-cyan-400 mb-2 z-10" size={24} />
+                  <span className="text-[11px] text-slate-300 font-bold z-10">FW TANK</span>
+                </div>
+              </EquipNode>
 
-            {/* Feedwater Pump */}
-            <EquipNode id="fwpump" x="28%" y="58%">
-              <div className="w-14 h-14 bg-[#152136] border-2 border-slate-600 rounded-full flex items-center justify-center shadow-lg relative pointer-events-auto">
-                <div className={`w-6 h-6 rounded-full border-2 border-slate-500 border-t-cyan-400 ${!isPaused ? 'animate-spin' : ''}`} style={{ animationDuration: getSpeedDur(1) }}></div>
-              </div>
-            </EquipNode>
+              <EquipNode id="fwpump" x="20%" y="66.6%">
+                <div className="w-16 h-16 bg-[#152136] border-2 border-slate-600 rounded-full flex items-center justify-center shadow-xl pointer-events-auto">
+                  <div className={`w-8 h-8 rounded-full border-[3px] border-slate-500 border-t-cyan-400 ${!isPaused ? 'animate-spin' : ''}`} style={{ animationDuration: getSpeedDur(1) }}></div>
+                </div>
+              </EquipNode>
 
-            {/* FD Fan */}
-            <EquipNode id="fdfan" x="48%" y="62%">
-              <div className="w-14 h-14 bg-[#152136] border-2 border-slate-600 rounded-full flex flex-col items-center justify-center shadow-lg pointer-events-auto">
-                <Wind className={`text-slate-400 ${!isPaused ? 'animate-spin' : ''}`} size={20} style={{ animationDuration: getSpeedDur(2) }} />
-                <span className="text-[8px] text-slate-400 mt-1">FD FAN</span>
-              </div>
-            </EquipNode>
+              <EquipNode id="fdfan" x="46.3%" y="66.6%">
+                <div className="w-16 h-16 bg-[#152136] border-2 border-slate-600 rounded-full flex flex-col items-center justify-center shadow-xl pointer-events-auto">
+                  <Wind className={`text-slate-400 ${!isPaused ? 'animate-spin' : ''}`} size={24} style={{ animationDuration: getSpeedDur(2) }} />
+                  <span className="text-[9px] text-slate-400 mt-1">FD FAN</span>
+                </div>
+              </EquipNode>
 
-            {/* Economizer */}
-            <EquipNode id="economizer" x="54%" y="43%">
-              <div className={`w-24 h-16 bg-[#152136] border-2 ${selectedNode === 'economizer' ? 'border-amber-500' : 'border-slate-600'} rounded-lg flex flex-col items-center justify-center shadow-lg pointer-events-auto relative`}>
-                <div className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-amber-500 rounded-full animate-pulse"></div>
-                <Activity className="text-amber-400 mb-1" size={18} />
-                <span className="text-[10px] text-slate-300 font-bold">ECONOMIZER</span>
-              </div>
-            </EquipNode>
+              <EquipNode id="economizer" x="53.6%" y="47.9%">
+                <div className={`w-28 h-20 bg-[#152136] border-2 ${selectedNode === 'economizer' ? 'border-amber-500' : 'border-slate-600'} rounded-lg flex flex-col items-center justify-center shadow-xl pointer-events-auto relative`}>
+                  <div className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-amber-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(245,158,11,0.8)]"></div>
+                  <Activity className="text-amber-400 mb-1" size={22} />
+                  <span className="text-[11px] text-slate-300 font-bold">ECONOMIZER</span>
+                </div>
+              </EquipNode>
 
-            {/* Furnace */}
-            <EquipNode id="furnace" x="69%" y="45%">
-              <div className="w-28 h-36 bg-gradient-to-b from-[#152136] to-[#0f172a] border-2 border-orange-800 rounded-t-full rounded-b-lg flex flex-col items-center justify-end pb-4 shadow-[0_0_30px_rgba(234,88,12,0.15)] overflow-hidden pointer-events-auto relative">
-                {!isPaused && <motion.div animate={{ opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 2, repeat: Infinity }} className="absolute bottom-0 w-full h-1/2 bg-gradient-to-t from-orange-600/40 to-transparent"></motion.div>}
-                <Flame className="text-orange-500 mb-2 z-10" size={32} />
-                <span className="text-xs text-orange-200 font-bold z-10">FURNACE</span>
-              </div>
-            </EquipNode>
+              <EquipNode id="furnace" x="69.4%" y="45.8%">
+                <div className="w-32 h-44 bg-gradient-to-b from-[#152136] to-[#0f172a] border-2 border-orange-800 rounded-t-full rounded-b-xl flex flex-col items-center justify-end pb-5 shadow-[0_0_40px_rgba(234,88,12,0.2)] overflow-hidden pointer-events-auto relative">
+                  {!isPaused && <motion.div animate={{ opacity: [0.4, 0.7, 0.4] }} transition={{ duration: 2, repeat: Infinity }} className="absolute bottom-0 w-full h-[55%] bg-gradient-to-t from-orange-600/50 to-transparent"></motion.div>}
+                  <Flame className="text-orange-500 mb-3 z-10" size={38} />
+                  <span className="text-sm text-orange-200 font-bold z-10">FURNACE</span>
+                </div>
+              </EquipNode>
 
-            {/* Steam Drum */}
-            <EquipNode id="drum" x="69%" y="20%">
-              <div className="w-36 h-16 bg-[#152136] border-2 border-cyan-700 rounded-full flex flex-col items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.1)] overflow-hidden pointer-events-auto relative">
-                <div className="absolute bottom-0 w-full h-[52%] bg-blue-900/40"></div>
-                <span className="text-[10px] text-cyan-200 font-bold z-10 mb-0.5">STEAM DRUM</span>
-                <Gauge className="text-cyan-400 z-10" size={14} />
-              </div>
-            </EquipNode>
+              <EquipNode id="drum" x="69.4%" y="16.6%">
+                <div className="w-44 h-20 bg-[#152136] border-2 border-cyan-700 rounded-full flex flex-col items-center justify-center shadow-[0_0_25px_rgba(6,182,212,0.15)] overflow-hidden pointer-events-auto relative">
+                  <div className="absolute bottom-0 w-full h-[52%] bg-blue-900/50"></div>
+                  <span className="text-xs text-cyan-200 font-bold z-10 mb-1">STEAM DRUM</span>
+                  <Gauge className="text-cyan-400 z-10" size={18} />
+                </div>
+              </EquipNode>
 
-            {/* Stack */}
-            <EquipNode id="stack" x="45%" y="15%">
-              <div className="w-16 h-28 bg-gradient-to-t from-[#152136] to-transparent border-x-2 border-t-2 border-slate-700 flex flex-col items-center justify-start pt-2 pointer-events-auto relative overflow-hidden">
-                {!isPaused && <motion.div animate={{ y: [0, -20] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMTBRNSAwIDEwIDEwVDEwIDMwIiBzdHJva2U9IiM2NDc0OGIiIGZpbGw9Im5vbmUiIG9wYWNpdHk9IjAuMiIvPjwvc3ZnPg==')] opacity-50"></motion.div>}
-                <Wind className="text-slate-500 mb-1 z-10" size={16} />
-                <span className="text-[10px] text-slate-400 z-10">STACK</span>
-              </div>
-            </EquipNode>
+              <EquipNode id="stack" x="42.1%" y="12.5%">
+                <div className="w-20 h-32 bg-gradient-to-t from-[#152136] to-transparent border-x-2 border-t-2 border-slate-700 flex flex-col items-center justify-start pt-3 pointer-events-auto relative overflow-hidden">
+                  {!isPaused && <motion.div animate={{ y: [0, -30] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMTBRNSAwIDEwIDEwVDEwIDMwIiBzdHJva2U9IiM2NDc0OGIiIGZpbGw9Im5vbmUiIG9wYWNpdHk9IjAuMyIvPjwvc3ZnPg==')] opacity-60"></motion.div>}
+                  <Wind className="text-slate-400 mb-2 z-10" size={20} />
+                  <span className="text-[11px] text-slate-400 z-10 font-medium">STACK</span>
+                </div>
+              </EquipNode>
 
-            {/* External Labels */}
-            <div className="absolute top-[16.6%] right-[5%] text-xs font-bold text-cyan-200 border border-cyan-800 bg-cyan-900/30 px-3 py-1 rounded backdrop-blur-sm pointer-events-auto">PROCESS</div>
-            <div className="absolute top-[50%] right-[5%] text-xs font-bold text-orange-300 border border-orange-800 bg-orange-900/30 px-3 py-1 rounded backdrop-blur-sm pointer-events-auto">FUEL SUPPLY</div>
-            <div className="absolute top-[66.6%] left-[28%] text-xs font-bold text-slate-400 border border-slate-700 bg-slate-800/30 px-3 py-1 rounded backdrop-blur-sm pointer-events-auto">AIR INTAKE</div>
-
+              <div className="absolute top-[12%] right-[0%] text-sm font-bold text-cyan-200 border border-cyan-800 bg-cyan-900/40 px-4 py-1.5 rounded-lg backdrop-blur-md pointer-events-auto shadow-lg">PROCESS STEAM</div>
+              <div className="absolute top-[54%] right-[0%] text-sm font-bold text-orange-300 border border-orange-800 bg-orange-900/40 px-4 py-1.5 rounded-lg backdrop-blur-md pointer-events-auto shadow-lg">FUEL SUPPLY</div>
+              <div className="absolute top-[80%] left-[28%] text-sm font-bold text-slate-300 border border-slate-600 bg-slate-800/40 px-4 py-1.5 rounded-lg backdrop-blur-md pointer-events-auto shadow-lg">AIR INTAKE</div>
+            </div>
           </div>
         </div>
 
