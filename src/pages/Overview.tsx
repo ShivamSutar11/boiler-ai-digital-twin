@@ -15,15 +15,15 @@ const KPICard = ({ title, value, unit, delta, icon: Icon, color = "text-brand-ac
     style={{ animationDelay: `${delay}ms` }}
   >
     <div className="flex justify-between items-start mb-2">
-      <span className="text-sm text-slate-400 font-medium">{title}</span>
+      <span className="text-sm text-slate-300 font-semibold">{title}</span>
       <Icon size={16} className={`${color} opacity-80`} />
     </div>
     <div className="flex items-baseline gap-1 mt-2">
-      <span className="text-2xl font-bold text-white tracking-tight">{value}</span>
-      <span className="text-xs text-slate-400 font-medium">{unit}</span>
+      <span className="text-3xl font-bold text-slate-50 tracking-tight">{value}</span>
+      <span className="text-sm text-slate-400 font-medium">{unit}</span>
     </div>
-    <div className="mt-2 text-[11px] text-brand-success flex items-center gap-1 font-medium">
-      <TrendingUpIcon size={12} />
+    <div className="mt-2 text-[12px] text-brand-success flex items-center gap-1 font-medium">
+      <TrendingUpIcon size={14} />
       <span>{delta}</span>
     </div>
   </div>
@@ -55,7 +55,7 @@ const Overview: React.FC = () => {
           style={{ animationDelay: '500ms' }}
         >
           <div className="flex justify-between items-center mb-6 z-10">
-            <h3 className="text-white font-medium tracking-wide">Boiler System – Live Digital Twin</h3>
+            <h3 className="text-slate-50 font-semibold tracking-wide">Boiler System – Live Digital Twin</h3>
             <div className="flex items-center gap-2 bg-brand-success/10 border border-brand-success/20 px-2.5 py-1 rounded-full">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-success animate-pulse"></span>
               <span className="text-[10px] text-brand-success uppercase font-bold tracking-wider">Live Data</span>
@@ -72,8 +72,8 @@ const Overview: React.FC = () => {
               
               {/* FW Tank */}
               <div className="absolute top-[50%] left-[5%] transform -translate-y-1/2 w-16 h-20 bg-[#152136] border border-brand-border rounded-md flex flex-col items-center justify-center shadow-lg">
-                <span className="text-[9px] text-slate-400 font-medium uppercase tracking-wider mb-1">FW Tank</span>
-                <span className="text-xs text-brand-accent font-mono">105°C</span>
+                <span className="text-[10px] text-slate-300 font-semibold uppercase tracking-wider mb-1">FW Tank</span>
+                <span className="text-xs text-brand-accent font-bold font-mono">105°C</span>
               </div>
 
               {/* Pump */}
@@ -84,30 +84,30 @@ const Overview: React.FC = () => {
               {/* Boiler B-101 */}
               <div className="absolute top-[35%] left-[45%] transform -translate-y-1/2 w-28 h-32 bg-gradient-to-b from-[#152136] to-[#0f172a] border border-brand-border rounded-lg flex flex-col items-center justify-center shadow-2xl relative overflow-hidden">
                 <div className="absolute bottom-0 w-full h-[40%] bg-orange-500/5 border-t border-orange-500/10"></div>
-                <span className="text-[10px] text-white font-medium uppercase tracking-wider mb-2 relative z-10">Boiler B-101</span>
-                <div className="bg-black/30 px-2 py-1 rounded text-xs text-orange-200 font-mono relative z-10 border border-white/5">890°C</div>
+                <span className="text-[11px] text-slate-50 font-bold uppercase tracking-wider mb-2 relative z-10">Boiler B-101</span>
+                <div className="bg-black/30 px-2 py-1 rounded text-xs text-orange-200 font-mono font-bold relative z-10 border border-white/5">890°C</div>
               </div>
 
               {/* Steam Header */}
               <div className="absolute top-[20%] left-[70%] transform -translate-y-1/2 w-20 h-10 bg-[#152136] border border-cyan-800/50 rounded-full flex flex-col items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.1)]">
-                <span className="text-[8px] text-cyan-300/70 font-medium uppercase tracking-wider">Header</span>
-                <span className="text-[10px] text-cyan-400 font-mono">42 bar</span>
+                <span className="text-[9px] text-cyan-200 font-semibold uppercase tracking-wider">Header</span>
+                <span className="text-[11px] text-cyan-400 font-bold font-mono">42 bar</span>
               </div>
 
               {/* End Process */}
               <div className="absolute top-[20%] right-[0%] transform -translate-y-1/2 flex flex-col gap-2">
-                <div className="text-[10px] text-slate-400 font-medium bg-[#152136] px-2 py-1 rounded border border-brand-border">Reactor Unit</div>
+                <div className="text-[11px] text-slate-300 font-semibold bg-[#152136] px-2 py-1 rounded border border-brand-border">Reactor Unit</div>
               </div>
 
               {/* Economizer */}
               <div className="absolute top-[75%] left-[60%] transform -translate-y-1/2 w-20 h-16 bg-[#152136] border border-brand-border rounded-md flex flex-col items-center justify-center shadow-lg">
-                <span className="text-[9px] text-slate-400 font-medium uppercase tracking-wider mb-1">Economizer</span>
-                <span className="text-[10px] text-amber-400/80 font-mono">310°C</span>
+                <span className="text-[10px] text-slate-300 font-semibold uppercase tracking-wider mb-1">Economizer</span>
+                <span className="text-[11px] text-amber-400 font-bold font-mono">310°C</span>
               </div>
 
               {/* Stack */}
               <div className="absolute top-[75%] right-[10%] transform -translate-y-1/2 w-10 h-24 bg-gradient-to-t from-[#152136] to-transparent border-x border-t border-brand-border rounded-t flex flex-col items-center justify-end pb-2">
-                <span className="text-[8px] text-slate-500 font-medium uppercase tracking-wider">Stack</span>
+                <span className="text-[9px] text-slate-400 font-semibold uppercase tracking-wider">Stack</span>
               </div>
 
 
@@ -166,36 +166,36 @@ const Overview: React.FC = () => {
             <div className="p-1.5 bg-brand-primary/20 rounded-md">
               <Lightbulb size={16} className="text-brand-accent" />
             </div>
-            <h3 className="text-white font-medium">AI Insights</h3>
+            <h3 className="text-slate-50 font-bold">AI Insights</h3>
           </div>
 
           <div className="flex-1 relative z-10">
             <div className="bg-[#192135] border border-amber-500/20 rounded-lg p-4 mb-4 relative overflow-hidden">
               <div className="absolute left-0 top-0 bottom-0 w-1 bg-amber-500/80"></div>
-              <div className="flex items-start gap-3 mb-2">
+              <div className="flex items-start gap-3 mb-3">
                 <AlertCircle size={16} className="text-amber-500 mt-0.5" />
-                <h4 className="text-white text-sm font-medium">Feedwater temperature deviation detected</h4>
+                <h4 className="text-slate-50 text-sm font-bold">Feedwater temperature deviation detected</h4>
               </div>
               <div className="pl-7 space-y-2">
                 <div className="flex justify-between items-center text-xs">
-                  <span className="text-slate-400">Probable Cause</span>
-                  <span className="text-white">Economizer fouling</span>
+                  <span className="text-slate-300">Probable Cause</span>
+                  <span className="text-slate-50 font-semibold">Economizer fouling</span>
                 </div>
                 <div className="flex justify-between items-center text-xs">
-                  <span className="text-slate-400">AI Confidence</span>
-                  <span className="text-brand-accent font-medium bg-brand-accent/10 px-1.5 py-0.5 rounded">87%</span>
+                  <span className="text-slate-300">AI Confidence</span>
+                  <span className="text-brand-accent font-bold bg-brand-accent/10 px-1.5 py-0.5 rounded">87%</span>
                 </div>
               </div>
             </div>
 
-            <p className="text-xs text-slate-400 leading-relaxed mb-6">
+            <p className="text-sm text-slate-300 leading-relaxed mb-6 font-medium">
               The neural network detected an anomalous drop in economizer heat transfer coefficient over the last 12 hours, correlating with increased flue gas exit temperatures.
             </p>
           </div>
 
-          <button className="relative z-10 w-full bg-white/5 hover:bg-brand-primary/20 border border-white/10 hover:border-brand-primary/50 text-white text-sm font-medium py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-[0_0_20px_rgba(37,99,235,0.15)]">
+          <button className="relative z-10 w-full bg-white/5 hover:bg-brand-primary/20 border border-white/10 hover:border-brand-primary/50 text-slate-50 text-sm font-semibold py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-[0_0_20px_rgba(37,99,235,0.15)]">
             View Recommended Actions
-            <ChevronRight size={16} className="text-slate-400 group-hover:text-brand-accent transition-colors" />
+            <ChevronRight size={16} className="text-slate-300 group-hover:text-brand-accent transition-colors" />
           </button>
         </div>
       </div>
@@ -207,8 +207,8 @@ const Overview: React.FC = () => {
       >
         <div className="flex justify-between items-center mb-6">
           <div>
-            <h3 className="text-white font-medium mb-1">Key Trend – Boiler Performance</h3>
-            <p className="text-xs text-slate-400">Efficiency tracking over time</p>
+            <h3 className="text-slate-50 font-semibold mb-1">Key Trend – Boiler Performance</h3>
+            <p className="text-sm text-slate-400">Efficiency tracking over time</p>
           </div>
           
           {/* Tabs */}
@@ -217,10 +217,10 @@ const Overview: React.FC = () => {
               <button 
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
+                className={`px-3 py-1 text-xs font-semibold rounded-md transition-colors ${
                   activeTab === tab 
-                    ? 'bg-brand-panel border border-brand-border/80 text-white shadow-sm' 
-                    : 'text-slate-500 hover:text-slate-300'
+                    ? 'bg-brand-panel border border-brand-border/80 text-slate-50 shadow-sm' 
+                    : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
                 {tab}

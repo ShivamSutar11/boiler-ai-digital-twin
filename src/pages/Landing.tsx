@@ -135,18 +135,18 @@ const Landing: React.FC = () => {
               
               {/* Floating Labels */}
               <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="absolute top-[15%] left-[10%] bg-[#0A1425]/80 backdrop-blur-md border border-[#1E293B] px-4 py-2 rounded-lg shadow-xl z-20">
-                <span className="block text-xl font-mono text-[#22D3EE] font-bold">91.8%</span>
-                <span className="text-[10px] text-[#94A3B8] uppercase tracking-wider">Efficiency</span>
+                <span className="block text-2xl font-mono text-[#22D3EE] font-bold">91.8%</span>
+                <span className="text-xs text-[#CBD5E1] uppercase tracking-wider font-medium">Efficiency</span>
               </motion.div>
               
               <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }} className="absolute top-[30%] right-[5%] bg-[#0A1425]/80 backdrop-blur-md border border-[#1E293B] px-4 py-2 rounded-lg shadow-xl z-20">
-                <span className="block text-xl font-mono text-[#F8FAFC] font-bold">42 bar</span>
-                <span className="text-[10px] text-[#94A3B8] uppercase tracking-wider">Steam Pressure</span>
+                <span className="block text-2xl font-mono text-[#F8FAFC] font-bold">42 <span className="text-sm font-medium text-[#94A3B8]">bar</span></span>
+                <span className="text-xs text-[#CBD5E1] uppercase tracking-wider font-medium">Steam Pressure</span>
               </motion.div>
 
               <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 2 }} className="absolute bottom-[25%] left-[5%] bg-[#0A1425]/80 backdrop-blur-md border border-[#1E293B] px-4 py-2 rounded-lg shadow-xl z-20">
-                <span className="block text-xl font-mono text-[#6366F1] font-bold">82 TPH</span>
-                <span className="text-[10px] text-[#94A3B8] uppercase tracking-wider">Steam Demand</span>
+                <span className="block text-2xl font-mono text-[#6366F1] font-bold">82 <span className="text-sm font-medium text-[#94A3B8]">TPH</span></span>
+                <span className="text-xs text-[#CBD5E1] uppercase tracking-wider font-medium">Steam Demand</span>
               </motion.div>
 
               <motion.div animate={{ y: [0, 12, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }} className="absolute bottom-[15%] right-[15%] bg-[#0A1425]/80 backdrop-blur-md border border-[#1E293B] px-4 py-2 rounded-lg shadow-xl z-20 flex items-center gap-3">

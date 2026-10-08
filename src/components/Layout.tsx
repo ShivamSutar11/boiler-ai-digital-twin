@@ -26,13 +26,13 @@ const Layout: React.FC = () => {
         {/* Sidebar */}
         <aside className="w-64 bg-brand-panel-light/30 border-r border-brand-border flex flex-col flex-shrink-0 z-10">
           <div className="p-6 border-b border-brand-border/50">
-            <h1 className="text-lg font-semibold text-white tracking-wide flex items-center gap-2">
+            <h1 className="text-lg font-bold text-slate-50 tracking-wide flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-primary to-brand-accent flex items-center justify-center shadow-lg">
                 <Cpu size={18} className="text-white" />
               </div>
               <span className="leading-tight">
                 Boiler AI
-                <span className="block text-[10px] text-slate-400 font-normal uppercase tracking-widest mt-0.5">Platform</span>
+                <span className="block text-[10px] text-slate-300 font-normal uppercase tracking-widest mt-0.5">Platform</span>
               </span>
             </h1>
           </div>
@@ -46,8 +46,8 @@ const Layout: React.FC = () => {
                     className={({ isActive }) =>
                       `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-200 ${
                         isActive || (item.name === 'Overview' && window.location.pathname === '/dashboard')
-                          ? 'bg-brand-primary/10 text-brand-accent font-medium shadow-[inset_2px_0_0_0_#06b6d4]'
-                          : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
+                          ? 'bg-brand-primary/10 text-brand-accent font-semibold shadow-[inset_2px_0_0_0_#06b6d4]'
+                          : 'text-slate-300 font-medium hover:text-slate-50 hover:bg-white/5'
                       }`
                     }
                   >
@@ -65,7 +65,7 @@ const Layout: React.FC = () => {
                   <div className="w-2.5 h-2.5 rounded-full bg-brand-success"></div>
                   <div className="absolute inset-0 rounded-full bg-brand-success animate-ping opacity-75"></div>
                 </div>
-                <span className="text-xs text-slate-300 font-medium tracking-wide">System Online</span>
+                <span className="text-xs text-slate-200 font-medium tracking-wide">System Online</span>
              </div>
           </div>
         </aside>
@@ -75,10 +75,10 @@ const Layout: React.FC = () => {
           
           {/* Top Header */}
           <header className="h-16 flex-shrink-0 border-b border-brand-border/50 px-8 flex items-center justify-between bg-brand-panel/50 backdrop-blur-md">
-            <h2 className="text-slate-200 font-medium tracking-wide">Chemical Plant Boiler AI & Digital Twin</h2>
+            <h2 className="text-slate-50 font-semibold tracking-wide">Chemical Plant Boiler AI & Digital Twin</h2>
             
             <div className="flex items-center gap-6">
-              <button className="relative text-slate-400 hover:text-white transition-colors">
+              <button className="relative text-slate-300 hover:text-white transition-colors">
                 <Bell size={18} />
                 <span className="absolute -top-1 -right-1 w-2 h-2 bg-brand-accent rounded-full"></span>
               </button>
@@ -86,7 +86,7 @@ const Layout: React.FC = () => {
               <div className="flex items-center gap-3 border-l border-brand-border/50 pl-6">
                 <div className="text-right hidden sm:block">
                   <p className="text-xs text-white font-medium">S. Engineer</p>
-                  <p className="text-[10px] text-slate-400">Operations</p>
+                  <p className="text-[10px] text-slate-300">Operations</p>
                 </div>
                 <div className="w-8 h-8 rounded-full bg-brand-primary/20 border border-brand-primary/30 flex items-center justify-center text-brand-accent">
                   <User size={14} />

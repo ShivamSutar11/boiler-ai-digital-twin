@@ -7,10 +7,10 @@ const SimControl = ({ label, current, min, max, unit, step = 1, value, onChange 
   return (
     <div className="bg-black/20 border border-brand-border/50 rounded-lg p-4 transition-colors focus-within:border-brand-primary/50">
       <div className="flex justify-between items-center mb-4">
-        <span className="text-slate-300 font-medium">{label}</span>
+        <span className="text-slate-50 font-semibold">{label}</span>
         <div className="flex items-center gap-3 text-sm">
-          <span className="text-slate-500">Cur: {current}{unit}</span>
-          <ArrowRight size={14} className="text-slate-600" />
+          <span className="text-slate-400 font-medium">Cur: {current}{unit}</span>
+          <ArrowRight size={14} className="text-slate-500" />
           <span className="text-brand-accent font-bold bg-brand-accent/10 px-2 py-1 rounded shadow-[0_0_10px_rgba(6,182,212,0.15)]">
             Sim: {value}{unit}
           </span>
@@ -25,7 +25,7 @@ const SimControl = ({ label, current, min, max, unit, step = 1, value, onChange 
         onChange={(e) => onChange(Number(e.target.value))}
         className="w-full accent-brand-accent h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer"
       />
-      <div className="flex justify-between text-[10px] text-slate-500 mt-2 px-1">
+      <div className="flex justify-between text-[11px] font-medium text-slate-400 mt-2 px-1">
         <span>{min}</span>
         <span>{max}</span>
       </div>
@@ -47,25 +47,25 @@ const ResultCard = ({ title, before, predicted, unit, goodDirection = 'up' }: an
 
   return (
     <div className="bg-brand-panel-light/30 border border-brand-border/50 rounded-lg p-4 flex flex-col transition-all hover:bg-brand-panel-light/40">
-      <span className="text-slate-400 text-sm mb-2">{title}</span>
+      <span className="text-slate-300 font-semibold text-sm mb-2">{title}</span>
       <div className="flex items-end justify-between mb-2">
         <div className="flex items-baseline gap-1">
           <motion.span 
             key={predicted}
             initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-2xl font-bold text-white"
+            className="text-3xl font-bold text-slate-50"
           >
             {predicted}
           </motion.span>
-          <span className="text-sm text-slate-500">{unit}</span>
+          <span className="text-sm font-medium text-slate-400">{unit}</span>
         </div>
-        <div className={`flex items-center gap-1 text-sm font-medium ${color}`}>
+        <div className={`flex items-center gap-1 text-sm font-bold ${color}`}>
           <Icon size={16} className={isNeutral ? 'opacity-0' : ''} />
           {impact > 0 ? '+' : ''}{impact}{title === 'CO₂ Emissions' || title.includes('Efficiency') ? '%' : ''}
         </div>
       </div>
-      <div className="text-xs text-slate-500 flex justify-between border-t border-brand-border/50 pt-2 mt-auto">
+      <div className="text-xs font-medium text-slate-400 flex justify-between border-t border-brand-border/50 pt-2 mt-auto">
         <span>Current: {before}{unit}</span>
       </div>
     </div>
@@ -210,8 +210,8 @@ const WhatIfSimulation: React.FC = () => {
   return (
     <div className="space-y-6 h-full flex flex-col animate-fade-in">
       <div>
-        <h2 className="text-2xl font-bold text-white mb-2">What-If Simulation</h2>
-        <p className="text-slate-400 text-sm">Predictive modeling and scenario optimization engine</p>
+        <h2 className="text-2xl font-bold text-slate-50 mb-2">What-If Simulation</h2>
+        <p className="text-slate-300 font-medium text-sm">Predictive modeling and scenario optimization engine</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 flex-1 min-h-[700px]">
@@ -219,8 +219,8 @@ const WhatIfSimulation: React.FC = () => {
         {/* Left Side - Inputs */}
         <div className="bg-brand-panel-light/30 border border-brand-border/50 rounded-xl p-6 flex flex-col">
           <div className="flex justify-between items-center mb-6">
-            <h3 className="text-lg font-semibold text-white">Simulation Parameters</h3>
-            <span className="text-xs font-mono bg-brand-primary/10 text-brand-primary px-3 py-1 rounded-full border border-brand-primary/30 shadow-[0_0_10px_rgba(37,99,235,0.1)]">
+            <h3 className="text-lg font-bold text-slate-50">Simulation Parameters</h3>
+            <span className="text-xs font-mono font-bold bg-brand-primary/10 text-brand-primary px-3 py-1 rounded-full border border-brand-primary/30 shadow-[0_0_10px_rgba(37,99,235,0.1)]">
               AI ENGINE ACTIVE
             </span>
           </div>
@@ -271,7 +271,7 @@ const WhatIfSimulation: React.FC = () => {
           </AnimatePresence>
 
           <div className="flex justify-between items-center mb-6">
-            <h3 className="text-lg font-semibold text-white">Predicted Impact</h3>
+            <h3 className="text-lg font-bold text-slate-50">Predicted Impact</h3>
             
             <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold border shadow-lg ${
               riskLevel === 'Low' ? 'bg-brand-success/10 text-brand-success border-brand-success/30' :
@@ -300,11 +300,11 @@ const WhatIfSimulation: React.FC = () => {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-                  <XAxis dataKey="name" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
-                  <YAxis stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
-                  <Tooltip cursor={{ fill: 'rgba(255,255,255,0.02)' }} contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', color: '#f8fafc', borderRadius: '8px' }} />
-                  <Legend wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
-                  <Bar dataKey="before" name="Current" fill="#334155" radius={[4, 4, 0, 0]} animationDuration={500} />
+                  <XAxis dataKey="name" stroke="#cbd5e1" fontSize={11} fontWeight={500} tickLine={false} axisLine={false} />
+                  <YAxis stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
+                  <Tooltip cursor={{ fill: 'rgba(255,255,255,0.02)' }} contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', color: '#f8fafc', borderRadius: '8px', fontWeight: 500 }} />
+                  <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1', fontWeight: 500 }} />
+                  <Bar dataKey="before" name="Current" fill="#475569" radius={[4, 4, 0, 0]} animationDuration={500} />
                   <Bar dataKey="predicted" name="Predicted" fill="#06b6d4" radius={[4, 4, 0, 0]} animationDuration={800} />
                 </BarChart>
               </ResponsiveContainer>
@@ -315,10 +315,10 @@ const WhatIfSimulation: React.FC = () => {
               
               {/* Dynamic Risk Messages */}
               <div className="bg-black/30 border border-brand-border/50 rounded-lg p-3">
-                <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold mb-2 block">Safety & Risk Assessment</span>
+                <span className="text-[10px] text-slate-400 uppercase tracking-widest font-bold mb-2 block">Safety & Risk Assessment</span>
                 <ul className="space-y-1.5">
                   {riskMessages.map((msg, i) => (
-                    <li key={i} className="flex items-start gap-2 text-xs text-slate-300">
+                    <li key={i} className="flex items-start gap-2 text-xs font-medium text-slate-300">
                       <div className={`mt-0.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${
                         riskLevel === 'Low' ? 'bg-brand-success' : riskLevel === 'Medium' ? 'bg-brand-warning' : 'bg-brand-critical'
                       }`}></div>
@@ -346,12 +346,12 @@ const WhatIfSimulation: React.FC = () => {
                   } size={20} />
                 </div>
                 <div>
-                  <h4 className={`font-semibold mb-1 text-sm ${
+                  <h4 className={`font-bold mb-1 text-sm ${
                     riskLevel === 'High' ? 'text-red-400' : 
                     riskLevel === 'Medium' ? 'text-amber-400' : 
                     'text-brand-accent'
                   }`}>AI Optimization Recommendation</h4>
-                  <p className="text-slate-300 text-sm leading-relaxed">
+                  <p className="text-slate-50 font-medium text-sm leading-relaxed">
                     "{recommendation}"
                   </p>
                 </div>

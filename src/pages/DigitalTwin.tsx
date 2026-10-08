@@ -188,7 +188,7 @@ const DigitalTwin: React.FC = () => {
               <EquipNode id="fdfan" x="46.3%" y="66.6%">
                 <div className="w-16 h-16 bg-[#152136] border-2 border-slate-600 rounded-full flex flex-col items-center justify-center shadow-xl pointer-events-auto">
                   <Wind className={`text-slate-400 ${!isPaused ? 'animate-spin' : ''}`} size={24} style={{ animationDuration: getSpeedDur(2) }} />
-                  <span className="text-[9px] text-slate-400 mt-1">FD FAN</span>
+                  <span className="text-[10px] text-slate-300 font-bold mt-1">FD FAN</span>
                 </div>
               </EquipNode>
 
@@ -220,7 +220,7 @@ const DigitalTwin: React.FC = () => {
                 <div className="w-20 h-32 bg-gradient-to-t from-[#152136] to-transparent border-x-2 border-t-2 border-slate-700 flex flex-col items-center justify-start pt-3 pointer-events-auto relative overflow-hidden">
                   {!isPaused && <motion.div animate={{ y: [0, -30] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMTBRNSAwIDEwIDEwVDEwIDMwIiBzdHJva2U9IiM2NDc0OGIiIGZpbGw9Im5vbmUiIG9wYWNpdHk9IjAuMyIvPjwvc3ZnPg==')] opacity-60"></motion.div>}
                   <Wind className="text-slate-400 mb-2 z-10" size={20} />
-                  <span className="text-[11px] text-slate-400 z-10 font-medium">STACK</span>
+                  <span className="text-[11px] text-slate-300 font-bold z-10">STACK</span>
                 </div>
               </EquipNode>
 
@@ -234,10 +234,10 @@ const DigitalTwin: React.FC = () => {
         {/* Right Sidebar - Status Panel */}
         <div className="w-80 bg-brand-panel-light/30 border border-brand-border/50 rounded-xl flex flex-col overflow-hidden">
           <div className="p-5 border-b border-brand-border/50 bg-black/20">
-            <h3 className="text-lg font-semibold text-white mb-1">
+            <h3 className="text-lg font-bold text-slate-50 mb-1">
               {selectedNode ? selectedData.name : 'System Overview'}
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-300">
               {selectedNode ? 'Component Diagnostics' : 'Select a component for details'}
             </p>
           </div>
