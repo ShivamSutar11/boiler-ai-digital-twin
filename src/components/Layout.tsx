@@ -38,21 +38,32 @@ const Layout: React.FC = () => {
           </div>
           
           <nav className="flex-1 py-6">
-            <ul className="space-y-1.5 px-4">
+            <ul className="space-y-2 px-3">
               {navItems.map((item) => (
                 <li key={item.path}>
                   <NavLink
                     to={item.path}
-                    className={({ isActive }) =>
-                      `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-200 ${
-                        isActive || (item.name === 'Overview' && window.location.pathname === '/dashboard')
-                          ? 'bg-brand-primary/10 text-brand-accent font-semibold shadow-[inset_2px_0_0_0_#06b6d4]'
-                          : 'text-slate-300 font-medium hover:text-slate-50 hover:bg-white/5'
-                      }`
-                    }
+                    className={({ isActive }) => {
+                      const active = isActive || (item.name === 'Overview' && window.location.pathname === '/dashboard');
+                      return `flex items-center gap-3 px-4 py-3 rounded-xl text-[14px] transition-all duration-300 relative overflow-hidden group ${
+                        active
+                          ? 'bg-cyan-950/40 text-cyan-400 font-bold shadow-[inset_4px_0_0_0_#06b6d4] border border-cyan-900/30'
+                          : 'text-slate-300 font-medium hover:text-white hover:bg-white/5 border border-transparent'
+                      }`;
+                    }}
                   >
-                    {item.icon}
-                    <span>{item.name}</span>
+                    {({ isActive }) => {
+                      const active = isActive || (item.name === 'Overview' && window.location.pathname === '/dashboard');
+                      return (
+                        <>
+                          {active && <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-transparent pointer-events-none"></div>}
+                          <div className={`transition-transform duration-300 z-10 ${active ? 'scale-110 drop-shadow-[0_0_8px_rgba(6,182,212,0.6)]' : 'group-hover:scale-110 opacity-80 group-hover:opacity-100'}`}>
+                            {item.icon}
+                          </div>
+                          <span className={`z-10 ${active ? "tracking-wide" : ""}`}>{item.name}</span>
+                        </>
+                      );
+                    }}
                   </NavLink>
                 </li>
               ))}
