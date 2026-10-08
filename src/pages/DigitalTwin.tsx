@@ -255,31 +255,31 @@ const DigitalTwin: React.FC = () => {
                 {selectedNode ? (
                   <>
                     <div className="flex justify-between items-center bg-black/20 p-4 rounded-lg border border-brand-border/50">
-                      <span className="text-sm text-slate-400">Health Score</span>
+                      <span className="text-[15px] font-semibold text-slate-300">Health Score</span>
                       <span className={`text-2xl font-bold ${selectedData.health < '80%' ? 'text-amber-400' : 'text-green-400'}`}>{selectedData.health}</span>
                     </div>
 
                     <div className="space-y-3">
                       <div className="flex justify-between border-b border-brand-border/50 pb-2">
-                        <span className="text-xs text-slate-400 uppercase tracking-widest">Temperature</span>
-                        <span className="text-sm text-white font-mono">{selectedData.temp}</span>
+                        <span className="text-xs text-slate-300 font-semibold uppercase tracking-widest">Temperature</span>
+                        <span className="text-sm text-slate-50 font-bold font-mono">{selectedData.temp}</span>
                       </div>
                       <div className="flex justify-between border-b border-brand-border/50 pb-2">
-                        <span className="text-xs text-slate-400 uppercase tracking-widest">Pressure</span>
-                        <span className="text-sm text-white font-mono">{selectedData.pressure}</span>
+                        <span className="text-xs text-slate-300 font-semibold uppercase tracking-widest">Pressure</span>
+                        <span className="text-sm text-slate-50 font-bold font-mono">{selectedData.pressure}</span>
                       </div>
                       <div className="flex justify-between pb-2">
-                        <span className="text-xs text-slate-400 uppercase tracking-widest">Status</span>
-                        <span className={`text-sm font-medium ${selectedData.status === 'Nominal' || selectedData.status.includes('Stable') || selectedData.status.includes('Optimal') ? 'text-green-400' : 'text-amber-400'}`}>{selectedData.status}</span>
+                        <span className="text-xs text-slate-300 font-semibold uppercase tracking-widest">Status</span>
+                        <span className={`text-sm font-bold ${selectedData.status === 'Nominal' || selectedData.status.includes('Stable') || selectedData.status.includes('Optimal') ? 'text-green-400' : 'text-amber-400'}`}>{selectedData.status}</span>
                       </div>
                     </div>
 
                     {selectedData.conf && (
                       <div className="bg-amber-900/20 border border-amber-800/50 p-4 rounded-lg">
                         <span className="text-xs text-amber-500 uppercase tracking-widest block mb-2 font-bold">AI Detection</span>
-                        <p className="text-sm text-white mb-2">{selectedData.status}</p>
+                        <p className="text-sm text-slate-50 font-semibold mb-2">{selectedData.status}</p>
                         <div className="flex justify-between text-xs">
-                          <span className="text-slate-400">Confidence</span>
+                          <span className="text-slate-300 font-semibold">Confidence</span>
                           <span className="text-amber-400 font-mono font-bold">{selectedData.conf}</span>
                         </div>
                       </div>
@@ -288,39 +288,39 @@ const DigitalTwin: React.FC = () => {
                 ) : (
                   <>
                     <div className="flex items-center justify-between">
-                      <span className="text-slate-400 text-sm">Overall Health</span>
+                      <span className="text-slate-300 font-semibold text-[15px]">Overall Health</span>
                       <div className="flex items-center gap-2">
-                        <span className="text-green-400 font-bold text-xl">92%</span>
-                        <Activity className="text-green-400" size={18} />
+                        <span className="text-green-400 font-bold text-2xl">92%</span>
+                        <Activity className="text-green-400" size={20} />
                       </div>
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-slate-400 text-sm">Current Load</span>
+                      <span className="text-slate-300 font-semibold text-[15px]">Current Load</span>
                       <div className="flex items-center gap-2">
-                        <span className="text-white font-bold text-xl">82%</span>
-                        <span className="text-xs text-slate-500">MCR</span>
+                        <span className="text-slate-50 font-bold text-2xl">82</span>
+                        <span className="text-sm font-medium text-slate-400">% MCR</span>
                       </div>
                     </div>
 
                     <div className="w-full h-px bg-slate-700 my-4"></div>
 
                     <div>
-                      <span className="text-slate-400 text-sm block mb-2">AI Control Status</span>
-                      <div className="bg-cyan-900/20 border border-cyan-800/50 rounded-lg p-3 flex items-center gap-3">
+                      <span className="text-slate-300 font-semibold text-[15px] block mb-2">AI Control Status</span>
+                      <div className="bg-cyan-900/20 border border-cyan-800/50 rounded-lg p-4 flex items-center gap-3 shadow-inner">
                         <div className="relative flex h-3 w-3">
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                           <span className="relative inline-flex rounded-full h-3 w-3 bg-cyan-500"></span>
                         </div>
-                        <span className="text-cyan-400 font-medium text-sm">Monitoring Active</span>
+                        <span className="text-cyan-400 font-bold text-[15px]">Monitoring Active</span>
                       </div>
                     </div>
 
                     <div>
-                      <span className="text-slate-400 text-sm block mb-2">Boiler Mode</span>
-                      <div className="bg-black/20 border border-brand-border/50 rounded-lg p-3 flex items-center justify-between">
-                        <span className="text-white font-medium text-sm">Automatic Optimization</span>
-                        <Power className="text-green-500" size={16} />
+                      <span className="text-slate-300 font-semibold text-[15px] block mb-2">Boiler Mode</span>
+                      <div className="bg-black/20 border border-brand-border/50 rounded-lg p-4 flex items-center justify-between shadow-inner">
+                        <span className="text-slate-50 font-bold text-[15px]">Automatic Optimization</span>
+                        <Power className="text-green-500" size={18} />
                       </div>
                     </div>
                   </>
